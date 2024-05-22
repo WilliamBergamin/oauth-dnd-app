@@ -1,0 +1,62 @@
+display_information:
+  name: oauth-dnd-app
+features:
+  bot_user:
+    display_name: oauth-dnd-app
+    always_online: false
+oauth_config:
+  redirect_urls:
+    - https://YOUR_APP_DOMAIN/slack/oauth_redirect
+  scopes:
+    user:
+      - dnd:read
+      - dnd:write
+    bot:
+      - chat:write
+settings:
+  interactivity:
+    is_enabled: true
+  org_deploy_enabled: true
+  socket_mode_enabled: true
+  token_rotation_enabled: false
+functions:
+  end_snooze:
+    title: End snooze
+    description: Snooze your notifications until the provided time
+    input_parameters:
+      user:
+        type: slack#/types/user_context
+        title: User who ran the workflow
+        description: Send this to who?
+        is_required: true
+        name: user
+    output_parameters:
+      snooze_endtime:
+        type: slack#/types/timestamp
+        title: Snooze endtime
+        description: user who snoozed the function
+        is_required: true
+        name: snooze_endtime
+  set_snooze:
+    title: Set Soonze
+    description: Snooze your notifications until the provided time
+    input_parameters:
+      user:
+        type: slack#/types/user_context
+        title: User who ran the workflow
+        description: Send this to who?
+        is_required: true
+        name: user
+      snooze_until:
+        type: slack#/types/timestamp
+        title: Snooze Until
+        description: How long will you snooze for
+        is_required: true
+        name: snooze_until
+    output_parameters:
+      snooze_endtime:
+        type: slack#/types/timestamp
+        title: Snooze endtime
+        description: user who snoozed the function
+        is_required: true
+        name: snooze_endtime
